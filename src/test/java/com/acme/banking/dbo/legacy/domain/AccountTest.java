@@ -17,7 +17,7 @@ public class AccountTest {
         accountStructure.amount -= 2_000;
 
         assertThat(accountStructure.amount)
-            .describedAs("Inconsistent state when lack of behavior encapsulation within Account")
+            .describedAs("Inconsistent state when lack of behavior encapsulation within CheckingAccount")
             .isGreaterThan(-1_000);
     }
 }
