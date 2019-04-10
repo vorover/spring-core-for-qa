@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 public class ReportingService {
     @Autowired(required = false)
     private CurrencyService currencyService;
+
     @Resource /** Like @Autowired but with JNDI support */
     private AccountRepository accountRepository;
 
@@ -26,7 +27,7 @@ public class ReportingService {
     }
 
     public double getUsdAmountFor(long accountId) {
-        double rurAmount = accountRepository.findById(1L).get().getAmount();
+        double rurAmount = accountRepository.findById(accountId).get().getAmount();
         return currencyService.getUsdRateForRur() * rurAmount;
     }
 }

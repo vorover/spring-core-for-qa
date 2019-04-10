@@ -118,6 +118,7 @@ _Рассмотрим основные концепции и ограничен�
 - Сборка и запуск тестовых наборов
 
 ## Доступ к данным (3/1)
+- [Простейший способ тестировать JPA на Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-jpa-test) 
 - Тестовые и production конфигурации РСУБД источников данных
 - Понятие Connection Pool
 - Spring Data ORM

@@ -8,12 +8,16 @@ import org.springframework.stereotype.Component;
 
 /** Stateful service */
 @Component("currencyService")
-@Scope("prototype")
+@Scope("singleton")
 @Lazy
 @PropertySource("classpath:app.properties")
 public class CurrencyService {
     @Value("${rurToUsdRate}")
     private double rurToUsdRate;
+
+    public void setRurToUsdRate(double rurToUsdRate) {
+        this.rurToUsdRate = rurToUsdRate;
+    }
 
     public double getUsdRateForRur() {
         return rurToUsdRate;
