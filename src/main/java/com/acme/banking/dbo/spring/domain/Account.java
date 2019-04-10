@@ -1,23 +1,25 @@
 package com.acme.banking.dbo.spring.domain;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
+import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance
 @DiscriminatorColumn(name="ACCOUNT_TYPE")
 public abstract class Account {
-    @Id private long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private long id;
     private double amount;
+    @Email @Size(max = 50) private String email;
 
     public Account() {
     }
 
-    public Account(long id, double amount) {
-        this.id = id;
+    public Account(double amount, String email) {
         this.amount = amount;
+        this.email = email;
     }
 
     public long getId() {

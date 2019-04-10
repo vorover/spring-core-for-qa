@@ -11,8 +11,8 @@ public class CheckingAccount extends Account {
     public CheckingAccount() {
     }
 
-    public CheckingAccount(long id, double amount, double overdraft) {
-        super(id, amount);
+    public CheckingAccount(double amount, double overdraft, String email) {
+        super(amount, email);
         this.overdraft = overdraft;
     }
 }

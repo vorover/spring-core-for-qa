@@ -19,15 +19,12 @@
     <context:component-scan base-package="com.acme.banking.dbo.spring"/>
     <context:annotation-config/>
 
-    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <beans:property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-        <beans:property name="url" value="jdbc:derby:target/db;create=true"/>
-    </beans:bean>
+
 
     <jpa:repositories base-package="com.acme.banking.dbo.spring.dao"/>
     <tx:annotation-driven/>
 
-    <beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" depends-on="dataSource">
         <beans:property name="packagesToScan" value="com.acme.banking.dbo.spring.domain"/>
         <beans:property name="dataSource" ref="dataSource"/>
         <beans:property name="jpaVendorAdapter">
@@ -43,9 +40,10 @@
             </beans:props>
         </beans:property>
     </beans:bean>
+
     <beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <beans:property name="entityManagerFactory" ref="entityManagerFactory"/>
     </beans:bean>
 
-
+    <beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 </beans:beans>

@@ -33,8 +33,8 @@ _Рассмотрим основные концепции и ограничен�
 - Повторное использование и наследование/делегирование 
 
 ### Spring-ready архитектура
-- Слои
 - Зависимости компонентов: порождающие шаблоны 
+- Слои
 
 ### Практика 
 - Рефакторинг процедурного legacy-кода
@@ -72,16 +72,24 @@ _Рассмотрим основные концепции и ограничен�
 ### Конфигурация
 - Способы конфигурирования: [java](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-annotation-config), [xml, groovy](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-basics)
 - [Структура конфигурации](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-basics)
-- [Инициализация компонентов](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-basics)
+- [Декларация компонентов](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-definition)
+- [Инициализация компонентов](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-class)
 - [Внедрение зависимостей](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-dependencies)
-- [Жизненный цикл компонентов](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-factory-scopes)
-- SpEL
+- [Жизненный цикл компонентов и Scopes](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-factory-scopes)
+- [SpEL](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#expressions)
+- [Валидация данных модели](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#validation-beanvalidation-overview)
+- [Профили](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-definition-profiles)
 
 ### Тестовая конфигурация и профили
-- Обзор модульных и интеграционных тестов
-- Тесты как компоненты Spring
-- Тест-дублеры
+- [Обзор модульных и интеграционных тестов в Spring](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#testing-introduction)
+- [Нужный junit4 runner](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#testcontext-support-classes)
+- Тесты как компоненты Spring: [аннотации для тестов](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#integration-testing-annotations-spring), [для junit4](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#integration-testing-annotations-junit4) и [стандартные аннотации](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#integration-testing-annotations-standard)
+- [Вспомогательный фреймворк TestContext](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#testcontext-framework)
+- [Кеширование контекста](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#testcontext-ctx-management-caching)
+- Тест-дублеры: графы стабов
 - Тестовые и production профили
+- [Утилиты работы с JDBC](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#integration-testing-support-jdbc)
+- [Управление транзакциями](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/testing.html#testcontext-tx-annotation-demo)
 
 ### Live coding demo
 - Обзор тестовой кодовой базы
@@ -93,10 +101,14 @@ _Рассмотрим основные концепции и ограничен�
 - Сборка и запуск тестовых наборов
 
 ## Жизненный цикл компонентов Spring и их вызовы (3/1.5)
+- Lazy-инициализация компонентов
 - События жизненного цикла компонента и их обработчики
+- [Обзор AOP](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#aop)
 - Управление безопасностью
 - Управление транзакциями
 - Управление повторами операций
+- Управление асинхронностью
+- Управление кешированием
 - Ресурсы как частный случай компонентов
 
 ### Practice Iteration 2
@@ -109,7 +121,7 @@ _Рассмотрим основные концепции и ограничен�
 - Тестовые и production конфигурации РСУБД источников данных
 - Понятие Connection Pool
 - Spring Data ORM
-- Обзор JPA Entities и Persistance Contexts
+- Обзор JPA Entities и Persistence Contexts
 - Провиженинг схемы БД при изменениях структур данных
 
 ### Live coding demo

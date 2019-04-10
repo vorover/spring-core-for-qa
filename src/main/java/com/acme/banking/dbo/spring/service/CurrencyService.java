@@ -1,11 +1,15 @@
 package com.acme.banking.dbo.spring.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /** Stateful service */
-@Service
+@Component("currencyService")
+@Scope("prototype")
+@Lazy
 @PropertySource("classpath:app.properties")
 public class CurrencyService {
     @Value("${rurToUsdRate}")
