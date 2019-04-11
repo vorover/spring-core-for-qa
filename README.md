@@ -55,9 +55,9 @@ _Рассмотрим основные концепции и ограничен�
 ## Обзор фреймворка Spring (3 часа всего / из них 1 час практики)
 - [Понятие фреймворка](https://www.programcreek.com/2011/09/what-is-the-difference-between-a-java-library-and-a-framework/) и [контейнеров](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/core.html#beans-basics)
 - Spring Core как [DI](https://en.wikipedia.org/wiki/Dependency_injection) Framework
-- Понятие [конфигурации](https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm) и [контекста](https://spring.io/understanding/application-context)
 - Концепция AOP и реализация ключевых задач фреймворка с помощью proxies
 - Обзор [модулей Spring](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/overview.html)
+- Понятие [конфигурации](https://www.tutorialspoint.com/spring/spring_java_based_configuration.htm) и [контекста](https://spring.io/understanding/application-context)
 
 ### Live coding demo
 - Обзор [зависимостей](https://docs.spring.io/spring/docs/5.0.0.RC3/spring-framework-reference/overview.html#dependency-management) и структуры типового Spring Application

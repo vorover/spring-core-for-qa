@@ -13,6 +13,8 @@ public abstract class Account {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private long id;
     private double amount;
     @Email @Size(max = 50) private String email;
+    @OneToOne
+    private Customer customer;
 
     public Account() {
     }

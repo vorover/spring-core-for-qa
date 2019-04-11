@@ -6,8 +6,31 @@ import com.acme.banking.dbo.ooad.service.TransferService;
 public class Launcher {
     public static void main(String[] args) {
         TransferService transferService = new TransferService(
-                new NostalgieConvertingService());
+                new NostalgieConvertingService(30));
 
+        BeanFactory app = new AppContext || BeanFactory
+        TransferService s = app.getBean(TransferService.class);
         transferService.exchange();
     }
 }
+
+/**
+ * Responsibilities:
+ * - DI building by config
+ * - Lifecycle management: scopes -> stateful!
+ *
+ * - AOP by spring
+ * - AOP by dev
+ *
+ * - Modules: code-generation
+ */
+
+/**
+<app>
+<bean type="TransferService" name="">
+    <bean type="NostalgieConvertingService" scope="singleton">
+        <constructor-arg value="30" />
+    </bean>
+</bean>
+</app>
+*/
