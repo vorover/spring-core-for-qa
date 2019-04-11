@@ -161,6 +161,71 @@ Got service1
 Result of service1's operation call: 84
 ```
 
+#### Scopes
+- Singleton service1 depending on singleton service2
+```
+23:45:54.740 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service1'
+S1 object constructor
+23:45:54.773 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service2'
+S2 object constructor
+......context loaded and prepared......
+Getting service1
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+Getting service1
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+```
+- Singleton service1 depending on prototype service2
+```
+S1 object constructor
+S2 object constructor
+......context loaded and prepared......
+Getting service1
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+Getting service1
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+```
+- Prototype service1 depending on singleton service2
+```
+23:47:43.826 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service2'
+S2 object constructor
+......context loaded and prepared......
+Getting service1
+S1 object constructor
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+Getting service1
+S1 object constructor
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+```
+- Prototype service1 depending on Prototype service2
+```
+......context loaded and prepared......
+Getting service1
+S1 object constructor
+S2 object constructor
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+Getting service1
+S1 object constructor
+S2 object constructor
+Got service1
+Result of service1's operation call: 84
+Result of service1's operation call: 84
+```
+
+
 ### Practice Iteration 2
 - Допокрытие модульными и интеграционными тестами бизнес-логики
 - Собственная логика жизненного цикла
