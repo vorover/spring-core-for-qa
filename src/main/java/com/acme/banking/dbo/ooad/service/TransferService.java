@@ -9,14 +9,6 @@ public class TransferService {
         this.convertingService = convertingService;
     }
 
-    @RollesAllowed
-    @Retry
-    @Log
-    @Transactional
-    @Valid
-    @Async
-    @Cache("key")
-    @Timer
     public void withdraw(Withdrawable from, double amount) {
         from.withdraw(amount);
     }

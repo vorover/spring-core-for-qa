@@ -6,11 +6,7 @@ import com.acme.banking.dbo.ooad.service.TransferService;
 public class Launcher {
     public static void main(String[] args) {
         TransferService transferService = new TransferService(
-                new NostalgieConvertingService(30));
-
-        BeanFactory app = new AppContext || BeanFactory
-        TransferService s = app.getBean(TransferService.class);
-        transferService.exchange();
+                new NostalgieConvertingService());
     }
 }
 
