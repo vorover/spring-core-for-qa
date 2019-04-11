@@ -30,13 +30,13 @@ _Рассмотрим основные концепции и ограничен�
 - Пример процедурного legacy-кода и вопросы сопровождаемости
 - Инкапсуляция
 - Полиморфизм и абстракции
-- Повторное использование и наследование/делегирование 
+- Повторное использование и наследование/делегирование
 
 ### Spring-ready архитектура
-- Зависимости компонентов: порождающие шаблоны 
+- Зависимости компонентов: порождающие шаблоны
 - Слои
 
-### Практика 
+### Практика
 - Рефакторинг процедурного legacy-кода
 - Layered Design
 - DI
@@ -45,8 +45,8 @@ _Рассмотрим основные концепции и ограничен�
 ### Тест-дизайн на примере JUnit-тестов
 - Структура теста
 - Именования
-- Проверки 
-- Тест-дублеры 
+- Проверки
+- Тест-дублеры
 - Покрытие
 
 ### Практика
@@ -111,6 +111,56 @@ _Рассмотрим основные концепции и ограничен�
 - Управление кешированием
 - Ресурсы как частный случай компонентов
 
+### Corner Cases for Bean declaration and initialization
+#### Declaration
+- Два бина с одинаковым id в одной секции beans – ошибка инициалиазации контекста
+- Два бина с одинаковым id в разных секциях beans (два xml или профили в одном xml): последний заданный overrides первый
+- Бин, заданный в xml без id, ищется только по типу
+- Бин, заданный в xml без id, не инъектируется @Autowired. Надо ref в xml
+- Бин, заданный как @Component, автоматом получает id. @Component("newId") _переопределяет_ дефолтный id
+- Бин с дублирующимся id, определенный в xml, overrides бин, заданный как @Component
+- Бин с дублирующимся id, определенный в @Configuration, overrides бин, заданный как @Component
+- Бин с дублирующимся id, определенный в @Configuration и xml – берется из xml, skipping определение из @Configuration
+- Бин с дублирующимся id, определенный в @Configuration, xml и как @Component – берется из xml, skipping определение из @Configuration
+
+#### Initialization
+- Eager service1 depending on eager service2
+```
+23:25:10.331 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service1'
+23:25:10.346 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service2'
+......context loaded and prepared......
+Getting service1
+Got service1
+Result of service1's operation call: 84
+```
+- Lazy service1 depending on eager service2
+```
+23:26:00.941 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service2'
+......context loaded and prepared......
+Getting service1
+23:26:00.966 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service1'
+Got service1
+Result of service1's operation call: 84
+```
+- Eager service1 depending on lazy service2
+```
+23:26:51.508 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service1'
+23:26:51.524 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service2'
+......context loaded and prepared......
+Getting service1
+Got service1
+Result of service1's operation call: 84
+```
+- Lazy service1 depending on lazy service2
+```
+......context loaded and prepared......
+Getting service1
+23:27:41.133 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service1'
+23:27:41.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'service2'
+Got service1
+Result of service1's operation call: 84
+```
+
 ### Practice Iteration 2
 - Допокрытие модульными и интеграционными тестами бизнес-логики
 - Собственная логика жизненного цикла
@@ -118,7 +168,7 @@ _Рассмотрим основные концепции и ограничен�
 - Сборка и запуск тестовых наборов
 
 ## Доступ к данным (3/1)
-- [Простейший способ тестировать JPA на Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-jpa-test) 
+- [Простейший способ тестировать JPA на Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing-spring-boot-applications-testing-autoconfigured-jpa-test)
 - Тестовые и production конфигурации РСУБД источников данных
 - Понятие Connection Pool
 - Spring Data ORM
