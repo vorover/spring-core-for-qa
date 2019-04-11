@@ -16,6 +16,8 @@ public class TestApp {
 
             AccountRepository accountRepository = context.getBean("accountRepository", AccountRepository.class);
             accountRepository.saveAndFlush(new SavingAccount(0, "correct@mail.ru"));
+
+            //Move to spring-context and Show Diagram...
         }
     }
 }
