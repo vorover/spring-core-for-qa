@@ -14,8 +14,7 @@ import java.util.Optional;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration({"classpath:test-spring-context.xml", "classpath:spring-context.xml"})
@@ -31,5 +30,17 @@ public class DemoIntegrationTestWithSpringBootTest {
         when(accountRepository.findById(anyLong())).thenReturn(Optional.of(accountStub));
 
         assertThat(reportingService.getUsdAmountFor(0L)).isEqualTo(300000d);
+    }
+
+    @Test
+    public void shouldCallPropertiesForAccountsWhenTransfer() {
+        Account fromMock = mock(Account.class);
+        when(fromStub.getAmount()).thenReturn(10_000d);
+        Account toMock = mock(Account.class);
+
+        transferService.transfer(fromMock, toMock, 100);
+
+        verify(fromMock, times(1)).withdraw(100);
+        verify(toMock).deposit(30_000);
     }
 }
