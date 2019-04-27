@@ -4,8 +4,10 @@ import java.util.Collection;
 
 public class FrameworkApp {
     public static void main(String[] args) {
+        NostalgieXchangeService xchangeService = new NostalgieXchangeService();
+        xchangeService.setRurToUsdRate(30);
         ReportingService reportingService = new ReportingService(
-                new NostalgieXchangeService(30), new AccountRepository()
+                xchangeService, new AccountRepository()
         );
 
         Collection<Account> accounts = reportingService.getAllAccountsInUsd();
@@ -15,17 +17,4 @@ public class FrameworkApp {
     }
 }
 
-class Account {
-    private long id;
-    //public AccountType type;
-    private double amount;
-    private double creditLimit; //state
 
-    public double getAmount() {
-        return this.amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-}

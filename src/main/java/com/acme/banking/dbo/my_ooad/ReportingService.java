@@ -4,9 +4,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+@Service
+@Qualifier("reportingService")
 public class ReportingService {
+    @Autowired
     private AccountRepository repository;
+    @Autowired(required = false)
     private XchangeService xchangeService;
+
     public ReportingService(XchangeService xchangeService, AccountRepository repository) {
         this.xchangeService = xchangeService;
         this.repository = repository;
@@ -25,17 +34,11 @@ public class ReportingService {
         }
         return accounts;
     }
-}
 
-class AccountRepository {
-    public Collection<Account> getAllAccounts() {
-        Account account1 = new Account();
-        Account account2 = new Account();
-        account1.setAmount(100);
-        account2.setAmount(200);
-        List<Account> accounts = new ArrayList<>();
-        accounts.add(account1);
-        accounts.add(account2);
-        return accounts;
+    public Double getUsdAmountFor(long id) {
+        Account acc = repository.getAccount(id)  ;
+        return acc.getAmount()/xchangeService.getRate();
     }
 }
+
+

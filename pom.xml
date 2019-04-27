@@ -49,7 +49,7 @@
 						<param>com.acme.*</param>
 					</targetTests>
 				</configuration>
-				<executions>
+				<!--<executions>
 					<execution>
 						<id>mutation-coverage</id>
 						<goals>
@@ -62,7 +62,7 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions>-->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
